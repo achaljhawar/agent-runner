@@ -1,4 +1,24 @@
-include README.md
+# Include essential files
 include LICENSE
+include README.md
+include CHANGELOG.md
 include pyproject.toml
 
+# Include package data
+include src/agentrunner/py.typed
+recursive-include src/agentrunner *.md *.yaml *.yml *.json
+
+# Exclude unnecessary files
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude .DS_Store
+global-exclude *.so
+exclude .env*
+exclude .python-version
+recursive-exclude * .git*
+recursive-exclude * __pycache__
+recursive-exclude * *.py[cod]
+recursive-exclude htmlcov *
+recursive-exclude .venv *
+recursive-exclude .next *
+recursive-exclude node_modules *

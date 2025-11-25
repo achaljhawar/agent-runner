@@ -4,14 +4,127 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agent-runner"
-version = "0.1.0"
-description = "open sourcing soon."
+version = "0.2.0"
+description = "Model-agnostic AI agent orchestration platform with unified interface for OpenAI, Anthropic, Google, xAI, Mistral and more"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 license = {text = "MIT"}
-authors = [
-    {name = "Kamryn Ohly", email = "kamryn@arcada.dev"}
+authors = [{name = "Kamryn Ohly", email = "kamryn@arcada.dev"}]
+maintainers = [{name = "Kamryn Ohly", email = "kamryn@arcada.dev"}]
+keywords = ["ai", "agent", "llm", "harness", "anthropic", "openai"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
+
+dependencies = [
+    "anthropic>=0.34.0",
+    "openai>=1.0.0",
+    "google-genai>=1.0.0",
+    "google-api-core>=2.0.0",
+    "httpx>=0.24.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "tiktoken>=0.5.0",
+    "rich>=13.0.0",
+    "click>=8.0.0",
+    "aiofiles>=23.0.0",
+    "websockets>=12.0",
+    "jinja2>=3.1.0",
+    "pyyaml>=6.0",
+    "unidiff>=0.7.0",
+    "pyfiglet>=0.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "pytest-mock>=3.11.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+tools = [
+    "playwright>=1.40.0",
+]
+providers = [
+    "mistralai>=0.0.11",
+]
+all = ["agent-runner[dev,tools,providers]"]
+
+[project.urls]
+Repository = "https://github.com/Design-Arena/agent-runner"
+Issues = "https://github.com/Design-Arena/agent-runner/issues"
+Changelog = "https://github.com/Design-Arena/agent-runner/blob/main/CHANGELOG.md"
+
+[project.scripts]
+agentrunner = "agentrunner.cli.main:cli"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["agentrunner*"]
+
+[tool.setuptools.package-data]
+agentrunner = ["py.typed", "**/*.md", "**/*.yaml", "**/*.yml"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = ["E501", "B008", "C901"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"src/agentrunner/cli/main.py" = ["W291"]  # Allow trailing whitespace for ASCII art logo
+
+[tool.mypy]
+python_version = "3.11"
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = [
+    "--strict-markers",
+    "--cov=agentrunner",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+omit = ["*/tests/*", "*/__pycache__/*", "*/.venv/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]

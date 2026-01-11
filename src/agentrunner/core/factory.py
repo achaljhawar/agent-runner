@@ -20,6 +20,7 @@ from agentrunner.providers.gemini_provider import GeminiProvider
 from agentrunner.providers.kimi_provider import KimiProvider
 from agentrunner.providers.mistral_provider import MistralProvider
 from agentrunner.providers.openai_provider import OpenAIProvider
+from agentrunner.providers.openrouter_provider import OpenRouterProvider
 from agentrunner.providers.registry import ModelRegistry
 from agentrunner.providers.xai_provider import XAIProvider
 from agentrunner.providers.zai_provider import ZAIProvider
@@ -36,6 +37,7 @@ ModelRegistry.register_provider("anthropic", AnthropicProvider)
 ModelRegistry.register_provider("google", GeminiProvider)
 ModelRegistry.register_provider("kimi", KimiProvider)
 ModelRegistry.register_provider("mistral", MistralProvider)
+ModelRegistry.register_provider("openrouter", OpenRouterProvider)
 ModelRegistry.register_provider("xai", XAIProvider)
 ModelRegistry.register_provider("zai", ZAIProvider)
 

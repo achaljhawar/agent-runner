@@ -352,3 +352,17 @@ ModelRegistry.register_model(
         api_key_env="MISTRAL_API_KEY",
     )
 )
+
+# Register OpenRouter models
+
+ModelRegistry.register_model(
+    ModelSpec(
+        model_id="xiaomi/mimo-v2-flash:free",
+        provider_name="openrouter",
+        display_name="Xiaomi MiMo V2 Flash Free (OpenRouter)",
+        context_window=128000,
+        input_cost_per_1k=0.0,
+        output_cost_per_1k=0.0,
+        api_key_env="OPENROUTER_API_KEY",
+    )
+)

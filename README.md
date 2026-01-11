@@ -88,6 +88,7 @@ MISTRAL_API_KEY=...
 XAI_API_KEY=...
 KIMI_API_KEY=...
 ZAI_API_KEY=...
+OPENROUTER_API_KEY=sk-or-...
 ```
 
 **Or set environment variables directly:**
@@ -124,6 +125,11 @@ agentrunner review src/main.py
 agentrunner models  # List all available models
 agentrunner run "Build a REST API" --model claude-sonnet-4-5-20250929
 agentrunner run "Analyze this code" --model gemini-2.5-pro
+```
+
+**OpenRouter models:**
+```bash
+agentrunner run "Build a website" --model xiaomi/mimo-v2-flash:free
 ```
 
 **Session management:**
@@ -241,7 +247,7 @@ Agent Runner provides a comprehensive set of tools that work consistently across
 
 Agent Runner provides a unified interface for multiple LLM providers:
 
-**OpenAI** • **Anthropic** • **Google** • **xAI** • **Mistral** • **Moonshot AI (Kimi)** • **Z.AI**
+**OpenAI** • **Anthropic** • **Google** • **xAI** • **Mistral** • **Moonshot AI (Kimi)** • **Z.AI** • **OpenRouter**
 
 See [`src/agentrunner/providers/registry.py`](src/agentrunner/providers/registry.py) for the complete list of available models.
 
